@@ -1,0 +1,11 @@
+/node_modules
+/vendor
+.env
+.env.local
+.DS_Store
+*.log
+bootstrap/cache/
+storage/
+public/build/
+.vscode/
+*.sqlite

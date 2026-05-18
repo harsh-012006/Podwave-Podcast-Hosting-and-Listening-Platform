@@ -1,0 +1,336 @@
+/* ================================================================
+   PodWave — Admin Panel Stylesheet
+   ================================================================ */
+
+/* ================================================================
+   ADMIN LAYOUT
+   ================================================================ */
+.pw-admin-body {
+  background: #0A0A0C;
+  display: flex;
+}
+
+/* SIDEBAR */
+.pw-admin-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #111115;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  z-index: 200;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .pw-admin-sidebar { transform: translateX(-100%); }
+  .pw-admin-sidebar.show { transform: translateX(0); }
+  .pw-admin-main { margin-left: 0 !important; }
+}
+
+.pw-admin-logo {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.pw-admin-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8B5CF6;
+  margin-top: 4px;
+  padding-left: 2px;
+}
+
+.pw-admin-nav {
+  padding: 16px 12px;
+  flex: 1;
+}
+.pw-nav-group-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #52525B;
+  padding: 6px 10px;
+  margin-bottom: 4px;
+}
+.pw-admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: #71717A;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  margin-bottom: 1px;
+}
+.pw-admin-nav-item:hover {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+.pw-admin-nav-item.active {
+  background: rgba(139,92,246,0.15);
+  color: #A78BFA;
+  font-weight: 600;
+}
+.pw-admin-nav-item i { font-size: 1rem; width: 18px; text-align: center; }
+.pw-sidebar-badge {
+  margin-left: auto;
+  background: #EF4444;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* MAIN AREA */
+.pw-admin-main {
+  margin-left: 240px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.pw-admin-header {
+  background: rgba(17,17,21,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.pw-admin-content {
+  padding: 28px 24px;
+  flex: 1;
+}
+
+/* ================================================================
+   ADMIN STAT CARDS
+   ================================================================ */
+.pw-admin-stat-card {
+  background: #18181B;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+.pw-admin-stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--stat-color, #8B5CF6);
+  opacity: 0.8;
+}
+.pw-admin-stat-card:hover {
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.pw-admin-stat-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  background: rgba(255,255,255,0.06);
+  color: var(--stat-color, #8B5CF6);
+  flex-shrink: 0;
+}
+.pw-admin-stat-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.pw-admin-stat-label {
+  font-size: 0.8rem;
+  color: #71717A;
+  font-weight: 500;
+  margin: 3px 0 2px;
+}
+.pw-admin-stat-sub { font-size: 0.72rem; color: #52525B; }
+
+/* ================================================================
+   ADMIN TABLES
+   ================================================================ */
+.pw-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.pw-table th {
+  color: #71717A;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  white-space: nowrap;
+}
+.pw-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: middle;
+}
+.pw-table tr:last-child td { border-bottom: none; }
+.pw-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* Role badges */
+.pw-badge-role {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 10px;
+  text-transform: capitalize;
+}
+.pw-role-admin    { background: rgba(139,92,246,0.2); color: #A78BFA; }
+.pw-role-creator  { background: rgba(59,130,246,0.2); color: #93C5FD; }
+.pw-role-listener { background: rgba(16,185,129,0.2); color: #6EE7B7; }
+
+/* ================================================================
+   ADMIN FORMS
+   ================================================================ */
+.pw-admin-form-group { margin-bottom: 18px; }
+.pw-admin-form-group label {
+  display: block;
+  color: #71717A;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.pw-admin-input {
+  background: #1E1E24 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 0.875rem !important;
+  padding: 10px 14px !important;
+}
+.pw-admin-input:focus {
+  border-color: #8B5CF6 !important;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.18) !important;
+}
+.pw-admin-select {
+  background: #1E1E24 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 0.875rem !important;
+}
+
+/* ================================================================
+   ADMIN MODALS
+   ================================================================ */
+.pw-modal .modal-content {
+  background: #18181B;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+.pw-modal .modal-header {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 20px 24px;
+}
+.pw-modal .modal-title { color: #fff; font-weight: 700; }
+.pw-modal .modal-footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 16px 24px; }
+.pw-modal .btn-close { filter: invert(1) opacity(0.6); }
+
+/* ================================================================
+   ADMIN UTILITY
+   ================================================================ */
+.pw-admin-page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+.pw-admin-page-sub { color: #71717A; font-size: 0.875rem; }
+
+.pw-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease;
+}
+.pw-action-btn-danger  { background: rgba(239,68,68,0.12); color: #FCA5A5; }
+.pw-action-btn-danger:hover  { background: rgba(239,68,68,0.25); }
+.pw-action-btn-success { background: rgba(16,185,129,0.12); color: #6EE7B7; }
+.pw-action-btn-success:hover { background: rgba(16,185,129,0.25); }
+.pw-action-btn-warning { background: rgba(245,158,11,0.12); color: #FCD34D; }
+.pw-action-btn-warning:hover { background: rgba(245,158,11,0.25); }
+.pw-action-btn-primary { background: rgba(139,92,246,0.15); color: #A78BFA; }
+.pw-action-btn-primary:hover { background: rgba(139,92,246,0.3); }
+
+.pw-empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: #52525B;
+}
+.pw-empty-state i { font-size: 3rem; display: block; margin-bottom: 12px; }
+.pw-empty-state p { font-size: 0.9rem; }
+
+/* Filter bar */
+.pw-filter-bar {
+  background: #18181B;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.pw-filter-input {
+  background: #111115 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 0.85rem !important;
+  padding: 8px 14px !important;
+  min-width: 200px;
+}
+.pw-filter-input:focus {
+  border-color: #8B5CF6 !important;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.18) !important;
+}
+.pw-filter-select {
+  background: #111115 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 0.85rem !important;
+  padding: 8px 30px 8px 12px !important;
+}
