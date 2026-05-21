@@ -60,62 +60,13 @@
                 </div>
             </div>
 
-            {{-- Built-in Audio Player --}}
-            <div class="pw-inline-player mb-4" id="inlinePlayerCard">
-                <div class="pw-inline-player-info mb-3">
-                    <i class="bi bi-headphones text-accent fs-4"></i>
-                    <span class="text-white fw-semibold">Now Playing</span>
-                </div>
-
-                <audio id="inlineAudio" preload="metadata"
+            {{-- Video Player --}}
+            <div class="pw-video-player-container mb-4" id="inlinePlayerCard">
+                <video id="inlineAudio" preload="metadata" controls
                        src="{{ $episode->audio_url }}"
-                       data-episode-id="{{ $episode->id }}">
-                </audio>
-
-                <div class="pw-inline-controls">
-                    <button class="pw-ctrl-btn pw-ctrl-skip" id="inlineBack" title="Back 15s">
-                        <i class="bi bi-arrow-counterclockwise"></i> 15
-                    </button>
-                    <button class="pw-ctrl-btn pw-ctrl-play" id="inlinePlay">
-                        <i class="bi bi-play-circle-fill" id="inlinePlayIcon"></i>
-                    </button>
-                    <button class="pw-ctrl-btn pw-ctrl-skip" id="inlineFwd" title="Forward 30s">
-                        <i class="bi bi-arrow-clockwise"></i> 30
-                    </button>
-                </div>
-
-                <div class="pw-progress-wrap mt-3">
-                    <span class="pw-time" id="inlineCurrent">0:00</span>
-                    <input type="range" id="inlineSeek" class="pw-progress-bar flex-grow-1" value="0" min="0" step="1">
-                    <span class="pw-time" id="inlineDuration">{{ $episode->formatted_duration }}</span>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <i class="bi bi-volume-up-fill text-muted"></i>
-                        <input type="range" id="inlineVolume" class="pw-volume-slider" min="0" max="1" step="0.05" value="0.8" style="width:80px;">
-                    </div>
-                    <div class="d-flex gap-2">
-                        <select id="inlineSpeed" class="pw-speed-select">
-                            <option value="0.75">0.75×</option>
-                            <option value="1" selected>1×</option>
-                            <option value="1.25">1.25×</option>
-                            <option value="1.5">1.5×</option>
-                            <option value="2">2×</option>
-                        </select>
-                    </div>
-                </div>
-
-                {{-- Progress bar for resume --}}
-                @auth
-                    @if($progress > 0 && $progress < $episode->duration)
-                    <div class="pw-resume-bar mt-3">
-                        <i class="bi bi-play-circle text-accent"></i>
-                        <span class="text-muted small">Resume from {{ gmdate('G:i:s', $progress) }}</span>
-                        <button class="btn pw-btn-primary btn-sm" id="resumeBtn" data-seconds="{{ $progress }}">Resume</button>
-                    </div>
-                    @endif
-                @endauth
+                       data-episode-id="{{ $episode->id }}"
+                       style="width: 100%; height: auto; border-radius: 12px; background: #000;">
+                </video>
             </div>
 
             {{-- Description --}}

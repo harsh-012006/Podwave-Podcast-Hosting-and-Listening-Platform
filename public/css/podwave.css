@@ -74,6 +74,9 @@ a:hover { color: var(--pw-accent-hover); }
 }
 .pw-logo i { color: var(--pw-accent); font-size: 1.5rem; }
 
+/* Improved text-muted for better contrast */
+.text-muted { color: #A1A1A9 !important; }
+
 .pw-nav-link {
   color: var(--pw-text-muted) !important;
   font-size: 0.875rem;
@@ -703,6 +706,29 @@ a:hover { color: var(--pw-accent-hover); }
   font-size: 0.8rem;
   cursor: pointer;
 }
+
+/* ================================================================
+   VIDEO PLAYER (EPISODE PAGE)
+   ================================================================ */
+.pw-video-player-container {
+  background: linear-gradient(135deg, var(--pw-surface-2), var(--pw-surface-3));
+  border: 1px solid rgba(139,92,246,0.25);
+  border-radius: var(--pw-radius-lg);
+  padding: 2px;
+  overflow: hidden;
+}
+
+.pw-video-player-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+
+.pw-video-player-container video::-webkit-media-controls {
+  background: linear-gradient(180deg, rgba(0,0,0,0.7), transparent);
+}
+
 .pw-resume-bar {
   background: var(--pw-surface-3);
   border-radius: 8px;
@@ -793,6 +819,7 @@ a:hover { color: var(--pw-accent-hover); }
 .pw-comment-reply { padding-left: 20px; border-left: 2px solid var(--pw-surface-3); }
 .pw-comment-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 .pw-comment-body { flex: 1; min-width: 0; }
+.pw-comment-body p { color: #D4D4D8 !important; line-height: 1.5; }
 .pw-comment-action { background: none; border: none; color: var(--pw-text-muted); font-size: 0.78rem; cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: color 0.2s; display: inline-flex; align-items: center; gap: 4px; }
 .pw-comment-action:hover { color: var(--pw-accent); }
 
@@ -868,6 +895,21 @@ a:hover { color: var(--pw-accent-hover); }
 .pw-demo-creds { border-top: 1px solid var(--pw-border); padding-top: 16px; }
 .pw-demo-btn { background: var(--pw-surface-3); border: 1px solid var(--pw-border); color: var(--pw-text-muted); border-radius: 8px; font-size: 0.78rem; padding: 4px 12px; }
 .pw-demo-btn:hover { background: var(--pw-accent); color: #fff; border-color: var(--pw-accent); }
+
+/* Divider for OAuth */
+.pw-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.pw-divider::before,
+.pw-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--pw-border);
+}
 
 /* ================================================================
    BREADCRUMB

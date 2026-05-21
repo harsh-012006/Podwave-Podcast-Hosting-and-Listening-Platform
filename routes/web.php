@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\OAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Creator\CreatorPodcastController;
 use App\Http\Controllers\Listener\ListenerController;
@@ -47,6 +48,13 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
+
+// ============================================================
+// OAUTH ROUTES (GOOGLE LOGIN)
+// ============================================================
+
+Route::get('/auth/google', [OAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [OAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
 // ============================================================
 // DASHBOARD REDIRECT

@@ -333,6 +333,13 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $sampleAudioFiles = [
+            'audio/sample-podcast-1.mp4',
+            'audio/sample-podcast-2.mp4',
+            'audio/sample-podcast-3.mp4',
+        ];
+
+        $audioIndex = 0;
         foreach ($episodeSets as $set) {
             foreach ($set['episodes'] as $i => $epData) {
                 Episode::create([
@@ -340,7 +347,7 @@ class DatabaseSeeder extends Seeder
                     'title'          => $epData['title'],
                     'slug'           => Str::slug($epData['title']) . '-' . Str::random(4),
                     'description'    => $epData['desc'],
-                    'audio_file'     => 'audio/sample.mp3', // placeholder
+                    'audio_file'     => $sampleAudioFiles[$audioIndex % 3], // Cycle through sample podcasts
                     'duration'       => $epData['duration'],
                     'episode_number' => $i + 1,
                     'season_number'  => 1,
@@ -349,6 +356,7 @@ class DatabaseSeeder extends Seeder
                     'release_date'   => now()->subDays(($i + 1) * 7),
                     'play_count'     => rand(1000, 50000),
                 ]);
+                $audioIndex++;
             }
         }
 

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'google_id',
         'role',
         'avatar',
         'bio',
@@ -37,6 +38,7 @@ class User extends Authenticatable
         'ban_reason',
         'banned_at',
         'subscriber_count',
+        'email_verified_at',
     ];
 
     /**

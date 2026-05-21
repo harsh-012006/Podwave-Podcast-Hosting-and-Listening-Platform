@@ -19,8 +19,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'    => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
+            'password' => ['required', 'string', 'min:6'],
         ];
     }
 
@@ -59,5 +59,16 @@ class LoginRequest extends FormRequest
     public function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.exists' => 'No account found with this email address.',
+            'password.required' => 'Please enter your password.',
+            'password.min' => 'Password must be at least 6 characters.',
+        ];
     }
 }
