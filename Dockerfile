@@ -48,9 +48,6 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-script
 # Copy application files
 COPY . .
 
-# Run scripts after full app is copied
-RUN composer run-script post-autoload-dump
-
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 storage bootstrap/cache
