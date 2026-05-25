@@ -75,19 +75,9 @@ RUN apk add --no-cache \
     supervisor \
     nginx
 
-# Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install \
-    gd \
-    pdo \
-    pdo_sqlite \
-    pdo_pgsql \
-    pdo_mysql \
-    mbstring \
-    exif \
-    pcntl \
-    bcmath \
-    opcache
+# Copy pre-compiled PHP extensions from build stage
+COPY --from=php-base /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --from=php-base /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
 
 WORKDIR /var/www/html
 
