@@ -39,11 +39,17 @@ WORKDIR /var/www/html
 # Copy composer files
 COPY composer.json composer.lock* ./
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Copy .env file (or .env.example if .env doesn't exist)
+COPY .env.example .env
+
+# Install PHP dependencies (skip scripts to avoid artisan errors)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 # Copy application files
 COPY . .
+
+# Run scripts after full app is copied
+RUN composer run-script post-autoload-dump
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html && \
