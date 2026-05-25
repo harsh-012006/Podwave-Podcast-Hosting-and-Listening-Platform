@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: podwave
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: single
+      - key: CACHE_DRIVER
+        value: file
+      - key: SESSION_DRIVER
+        value: file
+      - key: QUEUE_CONNECTION
+        value: database
+
+databases:
+  - name: podwave_db
+    databaseName: podwave
+    plan: starter
+    region: oregon
